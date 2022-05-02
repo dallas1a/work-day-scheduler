@@ -14,23 +14,29 @@
 </head>
 
 <body>
+    <!--make header jumbotron and centers text-->
     <header class="jumbotron text-center">
         <h1 class="display-3">Work Day Scheduler</h1>
         <p class="lead description">A simple calendar app for scheduling your work day</p>
+        <!--pulls in currentDay to display at top of calendar-->
         <p id="currentDay" class="lead"></p>
     </header>
-
+    <!--Sets schedule class and makes the container for it-->
     <div class="container schedule">
-        <div class="row time-block" data-hour="23">
+        <!--makes the row for the hour given by data hour and assigns each row a time-block class-->
+        <div class="row time-block" data-hour="9">
+            <!-- Calls bootstrap to determine how much each section of the row takes up, orients the row view based on screen size-->
             <div class="col-2 col-lg-1 hour">9:00 am</div>
             <textarea class="col-8 col-lg-10 "></textarea>
+            <!--calls bootstrap for button declaration and other style calls-->
             <button class=" col-2 col-lg-1 btn btn-block saveBtn d-flex justify-content-center align-items-center">
+                <!--utilizes bootstrap to call in icon-->
                 <i class="fas fa-save"> Save Event</i>
             </button>
         </div>
-    </div>
+    
 
-    <div class="container schedule">
+    
         <div class="row time-block" data-hour="10">
             <div class="col-2 col-lg-1 hour">10:00 am</div>
             <textarea class="col-8 col-lg-10 "></textarea>
@@ -38,9 +44,9 @@
                 <i class="fas fa-save"> Save Event</i>
             </button>
         </div>
-    </div>
+   
 
-    <div class="container schedule">
+   
         <div class="row time-block" data-hour="11">
             <div class="col-2 col-lg-1 hour">11:00 am</div>
             <textarea class="col-8 col-lg-10 "></textarea>
@@ -48,9 +54,8 @@
                 <i class="fas fa-save"> Save Event</i>
             </button>
         </div>
-    </div>
+   
         
-    <div class="container schedule">
         <div class="row time-block" data-hour="12">
             <div class="col-2 col-lg-1 hour">12:00 pm</div>
             <textarea class="col-8 col-lg-10 "></textarea>
@@ -58,9 +63,9 @@
                 <i class="fas fa-save"> Save Event</i>
             </button>
         </div>
-    </div>
+    
 
-    <div class="container schedule">
+    
         <div class="row time-block" data-hour="13">
             <div class="col-2 col-lg-1 hour">1:00 pm</div>
             <textarea class="col-8 col-lg-10 "></textarea>
@@ -68,9 +73,9 @@
                 <i class="fas fa-save"> Save Event</i>
             </button>
         </div>
-    </div>
+    
 
-    <div class="container schedule">
+    
         <div class="row time-block" data-hour="14">
             <div class="col-2 col-lg-1 hour">2:00 pm</div>
             <textarea class="col-8 col-lg-10 "></textarea>
@@ -78,9 +83,8 @@
                 <i class="fas fa-save"> Save Event</i>
             </button>
         </div>
-    </div>
-
-    <div class="container schedule">
+    
+    
         <div class="row time-block" data-hour="15">
             <div class="col-2 col-lg-1 hour">3:00 pm</div>
             <textarea class="col-8 col-lg-10 "></textarea>
@@ -88,9 +92,9 @@
                 <i class="fas fa-save"> Save Event</i>
             </button>
         </div>
-    </div>
+    
 
-    <div class="container schedule">
+    
         <div class="row time-block" data-hour="16">
             <div class="col-2 col-lg-1 hour">4:00 pm</div>
             <textarea class="col-8 col-lg-10 "></textarea>
@@ -98,17 +102,17 @@
                 <i class="fas fa-save"> Save Event</i>
             </button>
         </div>
-    </div>
+    
 
-    <div class="container schedule">
-        <div class="row time-block" data-hour="21">
+    
+        <div class="row time-block" data-hour="17">
             <div class="col-2 col-lg-1 hour">5:00 pm</div>
             <textarea class="col-8 col-lg-10 "></textarea>
             <button class=" col-2 col-lg-1 btn btn-block saveBtn d-flex justify-content-center align-items-center">
                 <i class="fas fa-save"> Save Event</i>
             </button>
         </div>
-    </div>
+    </div>>
 
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
