@@ -28,7 +28,7 @@ function initializeWorkDay() {
     localStorage.setItem("todos", JSON.stringify(toDoItems));
 
 }
-function setUpTimeBlocks() {
+function colorChangeBlocks() {
     $timeBlocks.each(function () {
         var $thisBlock = $(this);
         var thisBlocksHour = parseInt($thisBlock.attr("data-hour"));
@@ -63,7 +63,7 @@ function collectInfo() {
 }
 
 function saveEventLocal() {
-   
+   var $thisBlock = $(this).parent();
     
         var hourToUpdate = $(this).parent().attr("data-hour");
         var itemToAdd = (($(this).parent()).children("textarea")).val();
@@ -82,22 +82,20 @@ function saveEventLocal() {
 
 
 function readyFn(jQuery) {
-    collectInfo();
-    setUpTimeBlocks();
+    
+    colorChangeBlocks();
     
     if (!localStorage.getItem("todos")) {
 
         initializeWorkDay();
 
     }
-    
+    collectInfo();
     
 
     $currentDay.text(todaysDate);
     $workScheduleHour.on("click", "button", saveEventLocal);
 };
-
-
 
 
 
