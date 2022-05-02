@@ -33,16 +33,16 @@ function setUpTimeBlocks() {
         var $thisBlock = $(this);
         var thisBlocksHour = parseInt($thisBlock.attr("data-hour"));
 
-            if (thisBlocksHour == currentHour) {
-                $thisBlock.addClass("present").removeClass("past future");
-            }
-            if (thisBlocksHour < currentHour) {
-                $thisBlock.addClass("past").removeClass("present future");
-            }
-            if (thisBlocksHour > currentHour) {
-                $thisBlock.addClass("future").removeClass("past present");
-            }
-        
+        if (thisBlocksHour == currentHour) {
+            $thisBlock.addClass("present").removeClass("past future");
+        }
+        if (thisBlocksHour < currentHour) {
+            $thisBlock.addClass("past").removeClass("present future");
+        }
+        if (thisBlocksHour > currentHour) {
+            $thisBlock.addClass("future").removeClass("past present");
+        }
+
     });
 }
 
@@ -53,46 +53,48 @@ function collectInfo() {
 
 
     for (var i = 0; i < toDoItems.length; i++) {
-        var itemHour = toDoItems[i].hour;
-        var itemText = toDoItems[i].text;
+        var infoHour = toDoItems[i].hour;
+        var infoText = toDoItems[i].text;
 
-        $("[data-hour=" + itemHour + "]").children("textarea").val(itemText);
+        $("[data-hour=" + infoHour + "]").children("textarea").val(infoText);
     }
 
     console.log(toDoItems);
 }
 
 function saveEventLocal() {
-    var $thisBlock = $(this).parent();
+   
+    
+        var hourToUpdate = $(this).parent().attr("data-hour");
+        var itemToAdd = (($(this).parent()).children("textarea")).val();
 
-    var hourToUpdate = $(this).parent().attr("data-hour");
-    var itemToAdd = (($(this).parent()).children("textarea")).val();
 
+        for (var j = 0; j < toDoItems.length; j++) {
+            if (toDoItems[j].hour == hourToUpdate) {
 
-    for (var j = 0; j < toDoItems.length; j++) {
-        if (toDoItems[j].hour == hourToUpdate) {
-
-            toDoItems[j].text = itemToAdd;
+                toDoItems[j].text = itemToAdd;
+            }
         }
-    }
-    localStorage.setItem("todos", JSON.stringify(toDoItems));
-    collectInfo();
+        localStorage.setItem("todos", JSON.stringify(toDoItems));
+        collectInfo();
+
 }
 
 
 function readyFn(jQuery) {
+    collectInfo();
+    setUpTimeBlocks();
     
-        collectInfo();
+    if (!localStorage.getItem("todos")) {
+
+        initializeWorkDay();
+
+    }
     
-        if (!localStorage.getItem("todos")) {
     
-            initializeWorkDay();
-    
-        }
-    
-        setUpTimeBlocks();
-        $currentDay.text(todaysDate);
-        $workScheduleHour.on("click", "button", saveEventLocal);
+
+    $currentDay.text(todaysDate);
+    $workScheduleHour.on("click", "button", saveEventLocal);
 };
 
 
