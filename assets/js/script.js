@@ -33,16 +33,16 @@ function setUpTimeBlocks() {
         var $thisBlock = $(this);
         var thisBlocksHour = parseInt($thisBlock.attr("data-hour"));
 
-
-        if (thisBlocksHour == currentHour) {
-            $thisBlock.addClass("present").removeClass("past future");
-        }
-        if (thisBlocksHour < currentHour) {
-            $thisBlock.addClass("past").removeClass("present future");
-        }
-        if (thisBlocksHour > currentHour) {
-            $thisBlock.addClass("future").removeClass("past present");
-        }
+            if (thisBlocksHour == currentHour) {
+                $thisBlock.addClass("present").removeClass("past future");
+            }
+            if (thisBlocksHour < currentHour) {
+                $thisBlock.addClass("past").removeClass("present future");
+            }
+            if (thisBlocksHour > currentHour) {
+                $thisBlock.addClass("future").removeClass("past present");
+            }
+        
     });
 }
 
@@ -51,7 +51,7 @@ function collectInfo() {
     toDoItems = localStorage.getItem("todos");
     toDoItems = JSON.parse(toDoItems);
 
-    
+
     for (var i = 0; i < toDoItems.length; i++) {
         var itemHour = toDoItems[i].hour;
         var itemText = toDoItems[i].text;
@@ -62,41 +62,43 @@ function collectInfo() {
     console.log(toDoItems);
 }
 
-function saveHandler() {
+function saveEventLocal() {
     var $thisBlock = $(this).parent();
 
     var hourToUpdate = $(this).parent().attr("data-hour");
     var itemToAdd = (($(this).parent()).children("textarea")).val();
 
-   
+
     for (var j = 0; j < toDoItems.length; j++) {
         if (toDoItems[j].hour == hourToUpdate) {
-           
+
             toDoItems[j].text = itemToAdd;
         }
     }
     localStorage.setItem("todos", JSON.stringify(toDoItems));
-    renderSchedule();
+    collectInfo();
 }
 
 
 function readyFn(jQuery) {
-
     
+        collectInfo();
     
+        if (!localStorage.getItem("todos")) {
     
-    if (!localStorage.getItem("todos")) {
-        
-        initializeWorkDay();
-    } 
-    setUpTimeBlocks();
-    $currentDay.text(todaysDate);
-
+            initializeWorkDay();
     
-    renderSchedule();
+        }
     
-    $workScheduleHour.on("click", "button", saveHandler);
-
+        setUpTimeBlocks();
+        $currentDay.text(todaysDate);
+        $workScheduleHour.on("click", "button", saveEventLocal);
 };
+
+
+
+
+
+
 
 
